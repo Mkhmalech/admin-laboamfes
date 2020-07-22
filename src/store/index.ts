@@ -14,12 +14,15 @@ import {LabLaboStaffSaga, staffReducer} from '../ittyni-staff/index'
 //===> setting component
 import {settingReducer, LabLaboSettingSaga} from '../ittyni-labsetting/src'
 
+//===> catalogue component
+import {catalogListReducer, CatalogSaga} from '../labCatalog/src'
+
 export const createRootReducer = (history: History) =>
   combineReducers({
     auth   : AuthReducer,
     staff  : staffReducer,
     // slider : SliderReducer,
-    // catalog: catalogListReducer,
+    catalog: catalogListReducer,
     setting: settingReducer,
     router : connectRouter(history)
   });
@@ -37,7 +40,7 @@ export function* rootSaga() {
      fork(LabLaboSettingSaga),
 
     //  Catalog
-    //  fork(CatalogSaga)
+     fork(CatalogSaga)
 
     //  Orders
 

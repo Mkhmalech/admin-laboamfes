@@ -1,0 +1,18 @@
+{
+    "routes" : {
+        "dash" : "",
+        "catalogDetails" : ""
+    },
+    "store" : {
+        "saga" : "",
+        "reducer" : "",
+        "actions" : ""
+    },
+    "dispatcher" : "",
+    "components" : {
+        "table" : ""
+    },
+    "styles" : {
+        "font" : ""
+    }
+}

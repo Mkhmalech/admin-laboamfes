@@ -7,12 +7,12 @@ export class CatalogClass {
   private catalogTest: any = {};
   private selectedTest: any = {};
 
-  private token: AuthToken;
+  private token: string;
 
   private reportedValue?: any;
   private reportedUnit?: any;
 
-  constructor(dispatch: Dispatch, token: AuthToken) {
+  constructor(dispatch: Dispatch, token: string) {
     this.dispatch = dispatch;
 
     this.token = token;
@@ -151,7 +151,7 @@ export class CatalogClass {
       path: "tests",
       payload: {
         query: `query { LabTestFrenchSearch(query : "${name}" ){ id name { fr } finance { Bcode } } }` }
-    });
+  });
 
   // set if Catalog test is
   // referred to another lab
