@@ -14,5 +14,12 @@
     },
     "styles" : {
         "font" : ""
+    },
+    "dock" : {
+        "icon" : "",
+        "title" : ""
+    },
+    "sidebar" : {
+        
     }
 }

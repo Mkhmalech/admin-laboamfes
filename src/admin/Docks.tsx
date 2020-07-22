@@ -4,6 +4,7 @@ import { Ico } from '../react-icons-sc/src/ico';
 import { profile } from './icons/profile';
 import { staff } from './icons/staff';
 import { catalog } from './icons/catalog';
+import { laboratory } from './icons/laboratory';
 import { useSelector } from 'react-redux';
 import { settings } from './icons/settings';
 import { settingRoutes } from '../ittyni-labsetting/src';
@@ -20,6 +21,7 @@ const Dock: React.FunctionComponent<IDockProps> = ({ username, closeOpenSide }) 
 
   const docksData = [
     {pageLink : `/admin/${username}/account`, icon : profile, isUser : 'all'},
+    {pageLink : `/admin/${username}/labo`, icon : laboratory, isUser : 'admin'},
     {pageLink : `/admin/${username}/staff`, icon : staff, isUser : 'admin'},
     {pageLink : `/admin/${username}/catalog`, icon : catalog, isUser : 'all'},
     {pageLink : settingRoutes.admin.laboSetting.path, icon : settings, isUser : 'admin'},

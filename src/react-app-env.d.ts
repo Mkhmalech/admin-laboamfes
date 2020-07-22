@@ -3,6 +3,7 @@
 /// <reference types="./authentification-redux-lib" />
 /// <reference types="./ittyni-staff" />
 /// <reference types="./ittyni-labsetting" />
+/// <reference types="./labCatalog" />
 
 
 // laboratoire fes 
