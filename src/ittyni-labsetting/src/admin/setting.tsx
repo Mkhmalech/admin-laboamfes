@@ -127,7 +127,7 @@ export const Setting: React.FC<any> = () => {
                 <TitleTablePararameters>Gestion Parameters</TitleTablePararameters>
             </div>
 
-            <TabNavigation tabs={["conge", "departement", "Jours Ferie", "automates"]} onClick={showTab} />
+            <TabNavigation tabs={["conge", "departement", "Jours Ferie", "automates", "Team"]} onClick={showTab} />
 
             {Parameters.map((parameter: any) => (
                 <div style={{ width: "90%" }}>

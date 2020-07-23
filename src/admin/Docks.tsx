@@ -5,9 +5,7 @@ import { profile } from './icons/profile';
 import { staff } from './icons/staff';
 import { catalog } from './icons/catalog';
 import { laboratory } from './icons/laboratory';
-import { useSelector } from 'react-redux';
 import { settings } from './icons/settings';
-import { settingRoutes } from '../ittyni-labsetting/src';
 
 interface IDockProps {
   username: string
@@ -24,7 +22,7 @@ const Dock: React.FunctionComponent<IDockProps> = ({ username, closeOpenSide }) 
     {pageLink : `/admin/${username}/labo`, icon : laboratory, isUser : 'admin'},
     {pageLink : `/admin/${username}/staff`, icon : staff, isUser : 'admin'},
     {pageLink : `/admin/${username}/catalog`, icon : catalog, isUser : 'all'},
-    {pageLink : settingRoutes.admin.laboSetting.path, icon : settings, isUser : 'admin'},
+    {pageLink : `/admin/${username}/settings`, icon : settings, isUser : 'admin'},
   ]
 
   return (
