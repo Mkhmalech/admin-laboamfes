@@ -17,6 +17,12 @@ export const CatalogDetails: React.FC<ICatalogDetailsProps> = (props) => {
   // modify subcontractor
   const [isSubContractor, ModifySubContractor] = React.useState<boolean>(true);
 
+  const Modal = () => {
+
+    return(
+      <h2>this is modal</h2>
+    )
+  }
   return (
     <div>
       <h2 onClick={e => console.log(testList)}>Catalogue titre</h2>
@@ -44,16 +50,16 @@ export const CatalogDetails: React.FC<ICatalogDetailsProps> = (props) => {
                 <table.ContentRow>
                   <td style={{ flex: 1 }}>{test.reference.CPT}</td>
                   <td style={{ flex: 2 }}>{test.reference.Mnemonic}</td>
-                  <td style={{ flex: 8 }}>{test.name.fr}</td>
-                  <td style={{ flex: 2 }}>
-                    <select>
+                  <td style={{ flex: 8, cursor : "pointer" }}>{test.name.fr}</td>
+                  <td style={{ flex: 2 }}>{isSubContractor ? "Oui" : "Non"}
+                    {/* <select>
                       <option selected={isSubContractor ? true : false}>Oui</option>
                       <option selected={!isSubContractor ? true : false}>Non</option>
-                    </select>
+                    </select> */}
                   </td>
                   <td style={{ flex: 1 }}>{test.finance ? test.finance[0].Bcode : ''}</td>
                   <td style={{ flex: 1 }}>{Math.floor(test.finance[0].Bcode * 1.34)}</td>
-                  <td style={{ flex: 2, color : "blue" }}>{Math.floor(test.finance[0].Bcode * BFactor)}</td>
+                  <td style={{ flex: 2, color : "blue" }}><EditText initialData = {Math.floor(test.finance[0].Bcode * BFactor)} /></td>
                   <td style={{ flex: 2, color : "green" }}>
                     {Math.floor((BFactor/1.34)*100)}
                   </td>
@@ -66,3 +72,21 @@ export const CatalogDetails: React.FC<ICatalogDetailsProps> = (props) => {
     </div>
   );
 };
+
+// edit text 
+const EditText : React.FC<any> = ({initialData}) =>{
+  const [isModeEdit, setModeEdit] = React.useState<boolean>(false);
+  const [textData, setTextData] = React.useState<any>(initialData);
+  return(
+    <>
+      {isModeEdit && 
+        <input placeholder="click to edit" 
+               onBlur={e=>setModeEdit(false)} 
+               onChange={e=>setTextData(e.target.value)} 
+               style={{width : '98%'}}
+         autoFocus>
+        </input>}
+      {!isModeEdit && <span onClick={e=>setModeEdit(true)}>{textData}</span>}
+    </>
+  )
+}
