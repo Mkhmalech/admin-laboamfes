@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Dock from './Docks'
+import {DockMenu} from './dockMenu'
 import * as Wrapper from '../common/adminWrappers'
 import { useSelector } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
@@ -18,7 +19,7 @@ export const AdminLayout = () => {
     const {username} = useSelector(({auth} : LaboFesState)=>auth.login) || undefined
 
     // close/open sideMenu
-    const [closeSideMenu, setcloseSideMenu] = React.useState(false)
+    const [closeSideMenu, setcloseSideMenu] = React.useState(true)
 
     // check if user connected
     const {isAuth} = useSelector((state: LaboFesState) => state.auth.login);
@@ -54,8 +55,10 @@ export const AdminLayout = () => {
                      *
                      */}
                     <Wrapper.sidebar >
-                        {/* <Route path={`/admin/${username}/profile`} component={()=><User.Sidebar username ={username}/>} /> 
-                            <Route path={labRoutes.LabTests.admin.link} component={Sidebar} /> */}
+                        <Route path={`/admin/${username}/settings`} 
+                            component={()=>
+                                <DockMenu ModuleTitle="Gestion de Parametre" username={username}/>
+                        } /> 
                     </Wrapper.sidebar>
 
 
