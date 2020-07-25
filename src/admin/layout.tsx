@@ -18,7 +18,7 @@ export const AdminLayout = () => {
     const {username} = useSelector(({auth} : LaboFesState)=>auth.login) || undefined
 
     // close/open sideMenu
-    const [closeSideMenu, setcloseSideMenu] = React.useState(true)
+    const [closeSideMenu, setcloseSideMenu] = React.useState(false)
 
     // check if user connected
     const {isAuth} = useSelector((state: LaboFesState) => state.auth.login);
