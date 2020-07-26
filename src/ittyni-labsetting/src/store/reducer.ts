@@ -33,6 +33,13 @@ export const settingReducer: Reducer = (state = {}, action: AnyAction) => {
     
     // return existing state
     default:
-      return { ...state };
+      return { ...state, roles : [
+        { role : "Biologiste", 
+          permissions : [
+            { moduleName : "catalogue",   create : true, read : true, update : true, delete : false  },
+            { moduleName : "Personnelle",   create : false, read : true, update : false, delete : false  } 
+          ]
+        }
+      ]};
   }
 };
