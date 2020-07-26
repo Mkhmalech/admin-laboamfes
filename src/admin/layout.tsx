@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Dock from './Docks'
+import {DockMenu} from './dockMenu'
 import * as Wrapper from '../common/adminWrappers'
 import { useSelector } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
@@ -54,8 +55,10 @@ export const AdminLayout = () => {
                      *
                      */}
                     <Wrapper.sidebar >
-                        {/* <Route path={`/admin/${username}/profile`} component={()=><User.Sidebar username ={username}/>} /> 
-                            <Route path={labRoutes.LabTests.admin.link} component={Sidebar} /> */}
+                        <Route path={`/admin/${username}/settings`} 
+                            component={()=>
+                                <DockMenu ModuleTitle="Gestion de Parametre" username={username}/>
+                        } /> 
                     </Wrapper.sidebar>
 
 
@@ -74,8 +77,9 @@ export const AdminLayout = () => {
                             <Route path={`/admin/:user/catalog`} component={Catalog} exact/>
                             {/* catalog details*/}
                             <Route path={`/admin/:user/catalog/:id`} component={CatalogDetails}/>
-                            {/* setting */}
-                            <Route path={settingRoutes.admin.laboSetting.path} component={settingRoutes.admin.laboSetting.component}/>
+                            {/* setting */}                            
+                            <Route path={settingRoutes.admin.laboSettingTeam.path} component={settingRoutes.admin.laboSettingTeam.component} username={username}/>
+                            <Route path={settingRoutes.admin.laboSetting.path} component={settingRoutes.admin.laboSetting.component} exact/>
                         </Wrapper.page>
                     </Wrapper.content>
 
