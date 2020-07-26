@@ -77,8 +77,9 @@ export const AdminLayout = () => {
                             <Route path={`/admin/:user/catalog`} component={Catalog} exact/>
                             {/* catalog details*/}
                             <Route path={`/admin/:user/catalog/:id`} component={CatalogDetails}/>
-                            {/* setting */}
-                            <Route path={settingRoutes.admin.laboSetting.path} component={settingRoutes.admin.laboSetting.component}/>
+                            {/* setting */}                            
+                            <Route path={settingRoutes.admin.laboSettingTeam.path} component={settingRoutes.admin.laboSettingTeam.component} username={username}/>
+                            <Route path={settingRoutes.admin.laboSetting.path} component={settingRoutes.admin.laboSetting.component} exact/>
                         </Wrapper.page>
                     </Wrapper.content>
 

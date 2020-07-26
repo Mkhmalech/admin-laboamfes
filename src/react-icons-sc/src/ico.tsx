@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from '../../theme/styled-components';
 
 export interface icoProps {
-    className : string
+    className? : string
     viewBox : string
     paths : string[]
     color? : string | number
@@ -12,7 +12,7 @@ export interface icoProps {
     styles? : string
 }
 
-export const Ico = styled(({className, viewBox, paths, g,} : icoProps)=>(
+export const Ico = styled(({className, viewBox, paths, g, width, height, color} : icoProps)=>(
     <svg 
         className ={className}
         version="1.1" 
