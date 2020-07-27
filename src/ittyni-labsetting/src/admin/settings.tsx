@@ -3,10 +3,14 @@ import "./settings.css";
 import { settings } from "../../../admin/icons/settings";
 import { Ico } from "../../../react-icons-sc/src/ico";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 interface ISettingsProps {}
 
-export const Settings: React.FunctionComponent<any> = ({ username }) => {
+export const Settings: React.FunctionComponent<any> = () => {
+
+  const {username}  = useSelector((state : any) => state.auth.login) || undefined;
+
   const settingsSubModules = [
     {
       subModuleTitle: "Departements : Lister tous les departemts ",
