@@ -29,7 +29,7 @@ export class Auth {
     fetchUser = () => store.dispatch({
         type : AuthActions.AUTH_LOGIN_FETCH_USER,
         payload : {
-            query :`mutation{users{login(userInput: {email: "${this.email}", password: "${this.password}"}) { userId token username}}}`
+            query :`mutation{users{login(userInput:{email:"${this.email}",password:"${this.password}"}){userId token username}}}`
         },
         path : 'users'
     })
@@ -50,7 +50,7 @@ export class Auth {
         this.dispatch({
             type : AuthActions.AUTH_TOKEN_VERIFY,
             path : 'users',
-            payload : { query : `query { verifyToken(token : "${token}"){ userId username }}`}
+            payload : {query : `query{verifyToken(token:"${token}"){userId username}}`}
         })
     }
 }

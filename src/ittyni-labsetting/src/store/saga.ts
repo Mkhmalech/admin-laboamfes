@@ -92,7 +92,50 @@ function* addAutomate({path, payload} : AnyAction){
         SettingActions.LAB_LABO_SETTING_ADD_NEW_AUTOMATE_SUCCESS
     )
 }
-
+/**
+ * labo add new setting team
+ */
+function* addRole({path, payload} : AnyAction){
+    yield tryFetching(
+        path,
+        payload,
+        SettingActions.LAB_LABO_SETTING_ADD_NEW_ROLE_ERROR,
+        SettingActions.LAB_LABO_SETTING_ADD_NEW_ROLE_SUCCESS
+    )
+}
+/**
+ * labo list setting team
+ */
+function* fetchRoles({path, payload} : AnyAction){
+    yield tryFetching(
+        path,
+        payload,
+        SettingActions.LAB_LABO_SETTING_LIST_ROLES_ERROR,
+        SettingActions.LAB_LABO_SETTING_LIST_ROLES_SUCCESS
+    )
+}
+/**
+ * labo list setting team
+ */
+function* deleteRole({path, payload} : AnyAction){
+    yield tryFetching(
+        path,
+        payload,
+        SettingActions.LAB_LABO_SETTING_DELETE_ROLE_ERROR,
+        SettingActions.LAB_LABO_SETTING_DELETE_ROLE_SUCCESS
+    )
+}
+/**
+ * labo list setting team
+ */
+function* updateRole({path, payload} : AnyAction){
+    yield tryFetching(
+        path,
+        payload,
+        SettingActions.LAB_LABO_SETTING_ROLE_UPDATE_PERMISSIONS_ERROR,
+        SettingActions.LAB_LABO_SETTING_ROLE_UPDATE_PERMISSIONS_SUCCESS
+    )
+}
 
 //watcher func dispatcher
 function* watchLabLaboSetting(){
@@ -109,6 +152,11 @@ function* watchLabLaboSetting(){
     // automate
     yield takeEvery(SettingActions.LAB_LABO_SETTING_LIST_AUTOMATE, fetchAutomates)
     yield takeEvery(SettingActions.LAB_LABO_SETTING_ADD_NEW_AUTOMATE, addAutomate)
+    // roles
+    yield takeEvery(SettingActions.LAB_LABO_SETTING_LIST_ROLES, fetchRoles)
+    yield takeEvery(SettingActions.LAB_LABO_SETTING_ADD_NEW_ROLE, addRole)
+    yield takeEvery(SettingActions.LAB_LABO_SETTING_DELETE_ROLE, deleteRole)
+    yield takeEvery(SettingActions.LAB_LABO_SETTING_ROLE_UPDATE_PERMISSIONS, updateRole)
 }
 
 export function* LabLaboSettingSaga(){

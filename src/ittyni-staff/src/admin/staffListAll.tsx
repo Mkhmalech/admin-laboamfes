@@ -67,7 +67,7 @@ export const StaffListALL: React.FC<any> = () => {
                 {em.ppr}
             </Td>
             <Td>
-                {em.departement.name}
+                {em.departement && em.departement.name}
             </Td>
         </Tr>
     ))
@@ -85,7 +85,7 @@ export const StaffListALL: React.FC<any> = () => {
                     {em.ppr}
                 </Td>
                 <Td>
-                    {em.departement.name}
+                    {em.departement && em.departement.name}
                 </Td>
             </Tr>
         ))}</tbody>
@@ -135,7 +135,7 @@ export const StaffListALL: React.FC<any> = () => {
                                 {em.ppr}
                             </Td>
                             <Td>
-                                {em.departement.name}
+                                {em.departement && em.departement.name}
                             </Td>
                             <Td>
                                 <Delete onClick={()=>{

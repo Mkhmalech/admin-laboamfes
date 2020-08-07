@@ -31,15 +31,20 @@ export const settingReducer: Reducer = (state = {}, action: AnyAction) => {
     case SettingActions.LAB_LABO_SETTING_ADD_NEW_AUTOMATE_SUCCESS:
       return { ...state };
     
+    case SettingActions.LAB_LABO_SETTING_ADD_NEW_ROLE_SUCCESS:
+      return { ...state, addrole : action.payload };
+    
+    case SettingActions.LAB_LABO_SETTING_LIST_ROLES_SUCCESS:
+      return { ...state,  roles : action.payload.team.fetchAccountRoles};
+    
+    case SettingActions.LAB_LABO_SETTING_ROLE_UPDATE_PERMISSIONS_SUCCESS:
+      return { ...state,  permissionsUpadted : action.payload};
+
+    case SettingActions.LAB_LABO_SETTING_DELETE_ROLE_SUCCESS:
+      return { ...state,  roleDeleted : action.payload};
+    
     // return existing state
     default:
-      return { ...state, roles : [
-        { role : "Biologiste", 
-          permissions : [
-            { moduleName : "catalogue",   create : true, read : true, update : true, delete : false  },
-            { moduleName : "Personnelle",   create : false, read : true, update : false, delete : false  } 
-          ]
-        }
-      ]};
+      return { ...state };
   }
 };

@@ -1,6 +1,6 @@
 import { call, put } from "redux-saga/effects";
 
-export const api = 'https://ittyni.com/api';
+export const api = 'http://localhost:8080/api';
 
 export async function callApi(method: string, url: string, path: string, data?: any) {
     const res = await fetch(`${url}/${path}`, {

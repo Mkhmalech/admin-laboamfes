@@ -1,5 +1,38 @@
 import { store } from '../../../index';
 import { SettingActions } from '../store/actions';
+
+// add role
+export const addRoleToAccount = (status? : string)=>store.dispatch({
+    type : SettingActions.LAB_LABO_SETTING_ADD_NEW_ROLE,
+    payload : {
+        query : `mutation{team{addNewRole(status : "${status}")}}`
+    },
+    path : "labos"
+})
+// fetch existing roles
+export const fetchAccountRoles = async () =>await store.dispatch({
+    type : SettingActions.LAB_LABO_SETTING_LIST_ROLES,
+    payload : {
+        query : `query{team{fetchAccountRoles{role permissions{componentName read create update delete}}}}`
+    },
+    path : "labos"
+})
+// update existing roles
+export const updateAccountRolePermissions = async (role : string, permissions:any) =>await store.dispatch({
+    type : SettingActions.LAB_LABO_SETTING_ROLE_UPDATE_PERMISSIONS,
+    payload : {
+        query : `mutation{team{updatePermissionOfRole(role:"${role}",permissions:[${permissions.map((p:any)=>`{componentName : "${p.componentName}",read:${p.read},create:${p.create},update:${p.update},delete:${p.delete}}`)}])}}`
+    },
+    path : "labos"
+})
+// delete existing role
+export const deleteAccountRole = async (role : string) =>await store.dispatch({
+    type : SettingActions.LAB_LABO_SETTING_ROLE_UPDATE_PERMISSIONS,
+    payload : {
+        query : `mutation{team{deleteRole(role : "secretaire")}}`
+    },
+    path : "labos"
+})
 class Setting {
 
     private accountName : string = "Centrale du CHU Hassan II";
