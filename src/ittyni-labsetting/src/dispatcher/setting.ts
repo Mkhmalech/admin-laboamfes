@@ -1,6 +1,8 @@
 import { store } from '../../../index';
 import { SettingActions } from '../store/actions';
 
+// account to fetch from 
+const accountName : string = "FES";
 // add role
 export const addRoleToAccount = (status? : string)=>store.dispatch({
     type : SettingActions.LAB_LABO_SETTING_ADD_NEW_ROLE,
@@ -25,6 +27,7 @@ export const updateAccountRolePermissions = async (role : string, permissions:an
     },
     path : "labos"
 })
+
 // delete existing role
 export const deleteAccountRole = async (role : string) =>await store.dispatch({
     type : SettingActions.LAB_LABO_SETTING_ROLE_UPDATE_PERMISSIONS,
@@ -32,6 +35,27 @@ export const deleteAccountRole = async (role : string) =>await store.dispatch({
         query : `mutation{team{deleteRole(role : "secretaire")}}`
     },
     path : "labos"
+})
+
+/**
+ * fetch departements
+*/
+export const fetchDepartement = () =>store.dispatch({
+    type : SettingActions.LAB_LABO_SETTING_LIST_DEPARTEMENT,
+    payload : {
+        query : `mutation {setting{listDepartement(accountName:"${accountName}"){name}}}`
+    },
+    path : 'labos'
+})
+/**
+ * fetch leaves
+ */
+export const fetchLeave = ()=>store.dispatch({
+    type : SettingActions.LAB_LABO_SETTING_LIST_LEAVE,
+    payload : {
+        query : `mutation{setting{listLeave(accountName:"${accountName}"){leave duration}}}`
+    },
+    path : 'labos'
 })
 class Setting {
 

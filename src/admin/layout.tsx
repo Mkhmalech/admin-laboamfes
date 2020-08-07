@@ -77,7 +77,13 @@ export const AdminLayout = () => {
                             <Route path={`/admin/:user/catalog`} component={Catalog} exact/>
                             {/* catalog details*/}
                             <Route path={`/admin/:user/catalog/:id`} component={CatalogDetails}/>
-                            {/* setting */}                            
+                            {/**
+                             * settings
+                            */}                           
+                            <Route path={settingRoutes.admin.laboSettingHoliday.path} component={settingRoutes.admin.laboSettingHoliday.component}/>
+                            <Route path={settingRoutes.admin.laboSettingLeave.path} component={settingRoutes.admin.laboSettingLeave.component}/>
+                            <Route path={settingRoutes.admin.laboSettingDepartement.path} component={settingRoutes.admin.laboSettingDepartement.component}/>
+                            <Route path={settingRoutes.admin.laboSettingAutomate.path} component={settingRoutes.admin.laboSettingAutomate.component}/>
                             <Route path={settingRoutes.admin.laboSettingTeam.path} component={settingRoutes.admin.laboSettingTeam.component}/>
                             <Route path={settingRoutes.admin.laboSetting.path} component={settingRoutes.admin.laboSetting.component} exact/>
                         </Wrapper.page>

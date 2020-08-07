@@ -54,10 +54,6 @@ const RolesList: React.FC<any> = ({ role, permissions }) => {
     all.map(perm =>newPermission[key][perm] = false )
     updatePermission(newPermission)
   }
-  // valider update
-  const valider = (role:string, p : any ) =>{
-    
-  }
   return (
     <ul>
       <li >

@@ -17,12 +17,14 @@ export const Settings: React.FunctionComponent<any> = () => {
       subModuleDescription: "Clicker ici pour modifier les departements",
       subModuleButton: "Ouvrir Laboratoire departements",
       subModuleDiscover: "",
+      link: `/admin/${username}/settings/departements`,
     },
     {
       subModuleTitle: "Jours Ferie",
       subModuleDescription: "Jours feries de laboratoire",
       subModuleButton: "modifier, ajouter les jours de vacance",
       subModuleDiscover: "",
+      link: `/admin/${username}/settings/jours-feries`,
     },
     {
       subModuleTitle: "Congees des Personnelles de laboratoire",
@@ -30,12 +32,14 @@ export const Settings: React.FunctionComponent<any> = () => {
         "nombre des jours autorisees au personelles de laboratoire",
       subModuleButton: "Lister les congees",
       subModuleDiscover: "",
+      link: `/admin/${username}/settings/conge-des-personelles`,
     },
     {
       subModuleTitle: "automates : notre technologie de qualite",
       subModuleDescription: "La Technolgies dont le labo travaille avec ",
       subModuleButton: "Ajouter une automates",
       subModuleDiscover: "",
+      link: `/admin/${username}/settings/automates`,
     },
     {
       subModuleTitle: "Team de laboratoire",
