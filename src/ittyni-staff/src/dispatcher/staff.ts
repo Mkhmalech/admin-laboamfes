@@ -22,10 +22,9 @@ class Staff {
     store.dispatch({
       type: StaffActions.ADD_EMPLOYER,
       payload: {
-        query: `mutation{employerAddNew(employer :{
-          civility : "${employer.civility}"  firstName : "${employer.firstName}"
-          lastName : "${employer.lastName}"  ppr : ${employer.ppr}
-          departementName : "${employer.departementName}" accountName: "${this.accountName}"})}`,
+        query: `mutation{employerAddNew(employer:{
+          civility:"${employer.civility}" firstName:"${employer.firstName}"
+          lastName:"${employer.lastName}" accountName:"${this.accountName}"})}`
       },
       path: "labos/staff",
     });

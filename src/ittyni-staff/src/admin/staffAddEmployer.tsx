@@ -14,11 +14,11 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
   const [hidden, setHidden] = React.useState(false);
 
   // declare fields
-  const [firstName, setFirstName] = React.useState();
-  const [lastName, setLastName] = React.useState();
-  const [civility, setCivility] = React.useState();
-  const [unite, setUnite] = React.useState('')
-  const [PPR, setPPR] = React.useState();
+  const [firstName, setFirstName] = React.useState<any>();
+  const [lastName, setLastName] = React.useState<any>();
+  const [civility, setCivility] = React.useState<any>();
+  const [unite, setUnite] = React.useState<any>('')
+  const [PPR, setPPR] = React.useState<any>();
 
   // departement 
   const [departementName, setDepartementName] = React.useState();
@@ -41,6 +41,15 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
     staff.addNewEmployers(employer);
     // wait one second and fetch new list
     setTimeout(()=>staff.listStaff(), 1000);
+
+    // clear data after adding employer
+    setTimeout(()=>{
+      setFirstName('');
+      setLastName('');
+      setCivility('');
+      setUnite('');
+      setPPR('');
+    }, 1500);
   }
 
   // before anything get departements from
@@ -53,7 +62,7 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
     <React.Fragment>
       <div style={{ width: "90%" }}>
         <TitleTablePararameters>
-          Ajout de nouvelle Employer
+          Ajouter un nouveau Employer
            </TitleTablePararameters>
         <Link to={'./list-all-employers'} > {`<`}Retour </Link>
         <hr />
@@ -90,7 +99,7 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
           <div className="row clearfix">
             <div className="col_half">
               <label>Civilite</label>
-              <FormFieldSelect listToChose={["-", "Mr", "Mme"]} onChange={(e: any) => setCivility(e.target.value)} width="100%" />
+              <FormFieldSelect listToChose={["----", "Mr", "Mme"]} onChange={(e: any) => setCivility(e.target.value)} width="100%" />
             </div>
             {hidden && <AddPersonalInput label="Nouvelle Unite" onChange={(e: any) => setDepartementName(e.target.value)}/>}
           </div>
