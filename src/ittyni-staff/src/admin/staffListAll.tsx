@@ -2,100 +2,19 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Table, Tr, Th, Td } from './listStyle';
 import { TitleTablePararameters } from '../common/settingStyle';
-import { staff } from '../dispatcher/staff';
+
 import { useSelector } from 'react-redux';
+import { deleteEmployer, listStaff } from '../dispatcher/staff';
 
 export const StaffListALL: React.FC<any> = () => {
 
-    const [dataSearch, setdataSearch] = React.useState({
-        search: ''
-    })
-
     // staff list 
-    const staffState = useSelector((state: any) => state.staff.staff) || [];
+    const staff = useSelector((state: any) => state.staff.staff) || [];
 
-    // dont fetch more than one time
-    const [count, setCount] = React.useState<number>(0)
 
-    const { search } = dataSearch;
-
-    const onSearch = (e: any) => setdataSearch({ ...dataSearch, [e.target.name]: e.target.value })
-
-    React.useLayoutEffect(() => {
-        // staff.addNewEmployers({firstName : "mohammed", lastName : "khmalech", departement : "biochimie"})
-    })
-
-    interface FormFieldProps {
-        id: string
-        firstName: string
-        lastName: string
-        departement: string
-    }
-
-    let DataEmps: FormFieldProps[] = [
-        { id: "1", firstName: "mohammed", lastName: "khmalech", departement: "biochimie" },
-        { id: "2", firstName: "hicham", lastName: "bendarbi", departement: "biochimie" },
-        { id: "3", firstName: "hmida", lastName: "alaoui", departement: "serologie" }
-    ]
-    // Search Into Table Filter
-    var dataEmployes: FormFieldProps[] = [];
-    // let dataEmployes : string[];
-
-    if (DataEmps === null) {
-        console.log("Spinner")
-    } else {
-        dataEmployes = DataEmps.filter(
-            (employer) => {
-                const query = search.toLowerCase();
-                return employer.firstName.toLowerCase().indexOf(query) >= 0
-                    || employer.lastName.toLowerCase().indexOf(query) >= 0
-                    || employer.departement.toLowerCase().indexOf(query) >= 0
-            }
-        );
-    }
-
-    let Employes;
-    Employes = staffState.map((em: any) => (
-        <Tr key={em.id}>
-            <Td>
-                {em.firstName}
-            </Td>
-            <Td>
-                {em.lastName}
-            </Td>
-            <Td>
-                {em.ppr}
-            </Td>
-            <Td>
-                {em.departement && em.departement.name}
-            </Td>
-        </Tr>
-    ))
-
-    const staffTbody = <tbody>{
-        staffState.map((em: any) => (
-            <Tr key={em.id}>
-                <Td>
-                    {em.firstName}
-                </Td>
-                <Td>
-                    {em.lastName}
-                </Td>
-                <Td>
-                    {em.ppr}
-                </Td>
-                <Td>
-                    {em.departement && em.departement.name}
-                </Td>
-            </Tr>
-        ))}</tbody>
-
-    React.useEffect(() => {
-        if (staffState.length <= 0 && count == 0 ) {
-            staff.listStaff();
-            setCount(count + 1);
-        }
-    }, [staffState])
+    React.useEffect(()=>{
+        listStaff();
+    },[])
 
     return (
         <div style={{ width: "90%" }}>
@@ -106,45 +25,35 @@ export const StaffListALL: React.FC<any> = () => {
             <Link to={'./staff/add-new-employer'} >Ajouter Nouveau </Link>
 
             <hr />
-            <div>
-                <input placeholder="Search" name="search" value={search} onChange={e => onSearch(e)} />
-            </div>
-            <hr />
             <Table>
                 <thead>
                     <Tr>
                         <Th>nom</Th>
                         <Th>Prenom</Th>
-                        <Th>PPR</Th>
-                        <Th>unite</Th>
-                        <Th>Operation</Th>
+                        <Th>passe provisoire</Th>
+                        <Th>Status</Th>
                     </Tr>
                 </thead>
 
                 {/* Tbody Table */}
-                <tbody>{
-                    staffState.map((em: any) => ( em.id  &&
+                <tbody>{ staff.length>0 &&
+                    staff.map((em: any) => ( em.id  &&
                         <Tr key={em.id}>
                             <Td>
-                                {em.firstName}
+                                <Link to={'./staff/update'}>{em.firstName}</Link>
                             </Td>
                             <Td>
                                 {em.lastName}
                             </Td>
                             <Td>
-                                {em.ppr}
+                                {em.password}
                             </Td>
                             <Td>
-                                {em.departement && em.departement.name}
-                            </Td>
-                            <Td>
-                                <Delete onClick={()=>{
-                                    staff.deleteEmployer(em.id);
-                                    setTimeout(()=>staff.listStaff(), 1000)
-                                }}/>
+                                active
                             </Td>
                         </Tr>
                     ))}
+                    {staff.length<=0 && <Tr><Td>loading....</Td></Tr>}
                 </tbody>
             </Table>
         </div>

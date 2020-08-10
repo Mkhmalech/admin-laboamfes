@@ -61,7 +61,6 @@ export const AdminLayout = () => {
                         } /> 
                     </Wrapper.sidebar>
 
-
                     {/*** module content *******
                       *  
                       * @TODO
@@ -73,6 +72,7 @@ export const AdminLayout = () => {
                             {/* staff */}
                             <Route path={staffRoutes.StaffListAll.admin.path} component={staffRoutes.StaffListAll.admin.component} exact/>
                             <Route path={staffRoutes.StaffAddEmployer.admin.path} component={staffRoutes.StaffAddEmployer.admin.component} />
+                            <Route path={staffRoutes.StaffUpdateEmployer.admin.path} component={staffRoutes.StaffUpdateEmployer.admin.component} />
                             {/* catalog */}
                             <Route path={`/admin/:user/catalog`} component={Catalog} exact/>
                             {/* catalog details*/}
@@ -88,9 +88,7 @@ export const AdminLayout = () => {
                             <Route path={settingRoutes.admin.laboSetting.path} component={settingRoutes.admin.laboSetting.component} exact/>
                         </Wrapper.page>
                     </Wrapper.content>
-
                 </Wrapper.main>
-
             </Wrapper.container>
         </Wrapper.admin>
     )
