@@ -30,7 +30,7 @@ export const StaffListALL: React.FC<any> = () => {
                     <Tr>
                         <Th>nom</Th>
                         <Th>Prenom</Th>
-                        <Th>passe provisoire</Th>
+                        <Th>Poste</Th>
                         <Th>Status</Th>
                     </Tr>
                 </thead>
@@ -40,13 +40,13 @@ export const StaffListALL: React.FC<any> = () => {
                     staff.map((em: any) => ( em.id  &&
                         <Tr key={em.id}>
                             <Td>
-                                <Link to={'./staff/update'}>{em.firstName}</Link>
+                                <Link to={`./staff/employer?id=${em.id}`}>{em.firstName}</Link>
                             </Td>
                             <Td>
                                 {em.lastName}
                             </Td>
                             <Td>
-                                {em.password}
+                                {em.role && em.role.role}
                             </Td>
                             <Td>
                                 active

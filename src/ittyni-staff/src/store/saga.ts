@@ -37,6 +37,17 @@ function* StaffDeleteEmployer({path, payload} : AnyAction){
         StaffActions.DELETE_EXISTING_EMPLOYERS_SUCCESS
     )
 }
+/**
+ * labo staff delete employer
+ */
+function* fetchExistingEmployer({path, payload} : AnyAction){
+    yield tryFetching(
+        path,
+        payload,
+        StaffActions.FETH_EXISTING_EMPLOYER_ERROR,
+        StaffActions.FETH_EXISTING_EMPLOYER_SUCCESS
+    )
+}
 //watcher func dispatcher
 function* watchLabLaboStaff(){
 
@@ -44,6 +55,7 @@ function* watchLabLaboStaff(){
     yield takeEvery(StaffActions.ADD_EMPLOYER, StaffAddNew)
     yield takeEvery(StaffActions.LIST_ALL_EMPLOYERS, StaffFetchAll)
     yield takeEvery(StaffActions.DELETE_EXISTING_EMPLOYERS, StaffDeleteEmployer)
+    yield takeEvery(StaffActions.FETH_EXISTING_EMPLOYER, fetchExistingEmployer)
 }
 
 export function* LabLaboStaffSaga(){

@@ -21,7 +21,7 @@ export const staffRoutes = {
     },
     StaffUpdateEmployer : {
         admin : {
-            path : '/admin/:user/staff/update',
+            path : '/admin/:user/staff/employer',
             component : StaffUpdateEmployer
         }
     }

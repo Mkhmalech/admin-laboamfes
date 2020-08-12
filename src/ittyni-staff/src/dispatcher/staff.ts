@@ -9,7 +9,7 @@ const accountName: string = "FES";
 export const listStaff = () => store.dispatch({
     type: StaffActions.LIST_ALL_EMPLOYERS,
     payload: {
-      query: `query{employerListAll(accountName:"${accountName}"){id firstName lastName password}}`,
+      query: `query{employerListAll(accountName:"${accountName}"){id firstName lastName password role{role}}}`,
     },
     path: "labos/staff",
 });
@@ -20,7 +20,7 @@ export const listStaff = () => store.dispatch({
 export const addNewEmployers = (employer: any) => store.dispatch({
     type: StaffActions.ADD_EMPLOYER,
     payload: {
-      query: `mutation{employerAddNew(employer:{civility:"${employer.civility}" firstName:"${employer.firstName}" lastName:"${employer.lastName}" password:"${employer.password}" accountName:"${accountName}"})}`
+      query: `mutation{employerAddNew(employer:{civility:"${employer.civility}" firstName:"${employer.firstName}" lastName:"${employer.lastName}" password:"${employer.password}" role:"${employer.role}" accountName:"${accountName}"})}`
     },
     path: "labos/staff",
 });
@@ -28,9 +28,9 @@ export const addNewEmployers = (employer: any) => store.dispatch({
  * fetch existing employer
  */
 export const fetchExistingEmployer = (employerId: string) => store.dispatch({
-    type: StaffActions.ADD_EMPLOYER,
+    type: StaffActions.FETH_EXISTING_EMPLOYER,
     payload: {
-      query: `query{fetchExistingEmployer(employerId:"5f301d5ae06c9c23f417e0e7",accountName:"FES"){firstName id addedBy civility lastName password}}`
+      query: `query{fetchExistingEmployer(employerId:"${employerId}",accountName:"${accountName}"){firstName id addedBy civility lastName password departement{name _id} role{role _id}}}`
     },
     path: "labos/staff",
 });

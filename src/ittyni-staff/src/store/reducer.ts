@@ -19,6 +19,9 @@ export const staffReducer = (state=initialState, action: AnyAction) =>{
         case StaffActions.DELETE_EXISTING_EMPLOYERS_SUCCESS : 
             return { ...state, isEmpDeleted : payload.employerDelete };
             
+        case StaffActions.FETH_EXISTING_EMPLOYER_SUCCESS : 
+            return { ...state, employer : payload.fetchExistingEmployer };
+            
         default:
             return {...state};
     }

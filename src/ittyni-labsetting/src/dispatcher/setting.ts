@@ -17,7 +17,7 @@ export const addRoleToAccount = (status? : string)=>store.dispatch({
 export const fetchAccountRoles = async () =>await store.dispatch({
     type : SettingActions.LAB_LABO_SETTING_LIST_ROLES,
     payload : {
-        query : `query{team{fetchAccountRoles{role permissions{componentName read create update delete}}}}`
+        query : `query{team{fetchAccountRoles{_id role permissions{componentName read create update delete}}}}`
     },
     path : "labos"
 })

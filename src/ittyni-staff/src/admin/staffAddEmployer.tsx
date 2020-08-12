@@ -5,17 +5,21 @@ import { TitleTablePararameters } from '../common/settingStyle';
 import { useSelector } from 'react-redux';
 import { staff } from '../../../admin/icons/staff';
 import { addNewEmployers, listStaff } from '../dispatcher/staff';
+import {fetchAccountRoles} from '../../../store/dispatcher'
 
 export const StaffAddEmployer: React.FC<any> = ({ username }) => {
 
   // get server respond 
   const hasCreated = useSelector((state: any) => state.staff.hasCreated) || undefined;
 
+  // get roles 
+  const { roles } = useSelector<any, any>(({setting}) => setting) || undefined;
 
   // declare fields
   const [firstName, setFirstName] = React.useState<string>();
   const [lastName, setLastName] = React.useState<string>();
   const [civility, setCivility] = React.useState<string>();
+  const [role, setRole] = React.useState<string>();
   const [password, setPassword] = React.useState<string>();
 
   // Add new Employer
@@ -24,8 +28,10 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
       civility: civility,
       firstName : firstName,
       lastName : lastName,
-      password : password
+      password : password,
+      role : role
     }
+
     addNewEmployers(employer);
     // wait one second and fetch new list
     setTimeout(()=>listStaff(), 1000);
@@ -38,6 +44,11 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
       setPassword('');
     }, 1500);
   }
+
+  // fetch needed data
+  React.useEffect(()=>{
+    fetchAccountRoles();
+  },[])
 
   return (
     <React.Fragment>
@@ -52,19 +63,28 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
       <div className="form_wrapper">
         <div className="form_container">
           <div className="title_container">
-            <h3>* Tous les chams sont requis</h3>
+            <h3 onClick={()=>console.log(role)}>* Tous les chams sont requis</h3>
           </div>
           <div className="row clearfix">
             <AddPersonalInput value={lastName} label="nom" onChange={(e)=>setLastName(e.target.value)}/>
             <AddPersonalInput value={firstName} label="prenom" onChange={(e)=>setFirstName(e.target.value)}/>
           </div>
           <div className="row clearfix">
-            <AddPersonalInput value={password} label="mot de passe provisoire" onChange={(e)=>setPassword(e.target.value)} />
+            <AddPersonalInput value={password} label="mot de passe provisoire" onChange={(e)=>setPassword(e.target.value)}/>
           </div>
           <div className="row clearfix">
             <div className="col_half">
               <label>Civilite</label>
               <FormFieldSelect listToChose={["----", "Mr", "Mme"]} onChange={(e: any) => setCivility(e.target.value)} width="150px" />
+            </div>
+          </div>
+          <div className="row clearfix">
+            <div className="col_half">
+              <label>Fonction</label>
+              {roles && 
+                <FormFieldSelect listToChose={["-----", ...roles.map((r:any)=>r.role)]} 
+                  onChange={(e: any) => setRole(roles.find((r:any)=>r.role == e.target.value)._id)} width="150px" />
+              }
             </div>
           </div>
           <input className="button" type="submit" 
