@@ -29,7 +29,7 @@ function* handleVerifyToken({path, payload} : AnyAction){
         if(res.errors){
             yield put({type : AuthActions.AUTH_TOKEN_VERIFY_FALSE ,error : res.errors[0].message})
         } else {
-            yield put({type : AuthActions.AUTH_TOKEN_VERIFY_TRUE, payload : res.data.verifyToken})
+            yield put({type : AuthActions.AUTH_TOKEN_VERIFY_TRUE, payload : res.data})
         }
 
     } catch(e) {

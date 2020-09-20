@@ -8,7 +8,7 @@ import { Link, Redirect } from "react-router-dom";
 import { Ico } from '../../../../react-icons-sc/src/ico';
 import { user } from '../../icons/user'
 import { email } from '../../icons/email'
-import { Auth } from '../../controller/auth';
+import { Auth, fetchUser } from '../../controller/auth';
 
 // styles
 
@@ -18,6 +18,10 @@ interface PropsFromContext { }
 
 export const LoginComponent: React.FunctionComponent<PropsFromContext> = (props) => {
     const auth = new Auth();
+    // get email
+    const [Email, setEmail] = React.useState<string>('');
+    // get password
+    const [Password, setPassword] = React.useState<string>('');
 
     return (
         <>
@@ -36,7 +40,7 @@ export const LoginComponent: React.FunctionComponent<PropsFromContext> = (props)
                     <Input
                         type="text"
                         placeholder="Email"
-                        onChange={e => auth.setEmail(e.target.value)}
+                        onChange={e => setEmail(e.target.value)}
                     />
                 </UserField>
                 <Fields>
@@ -53,12 +57,12 @@ export const LoginComponent: React.FunctionComponent<PropsFromContext> = (props)
                     <Input
                         type="password"
                         placeholder="Password"
-                        onChange={e => auth.setPassword(e.target.value)}
+                        onChange={e => setPassword(e.target.value)}
                     />
                 </Fields>
                 <Button
                     type="submit"
-                    onClick={auth.fetchUser}
+                    onClick={()=>fetchUser(Email, Password)}
                 >
                     <span >Log in</span>
                 </Button>

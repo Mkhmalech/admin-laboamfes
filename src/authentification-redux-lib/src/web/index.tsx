@@ -6,7 +6,7 @@ import { Route, Redirect } from 'react-router-dom';
 import {LoginComponent} from './login'
 import { Signup } from './signup'
 import { ResetPassword } from './resetpassword'
-import { Auth } from '../controller/auth';
+import { Auth, isLogged } from '../controller/auth';
 import { useSelector } from 'react-redux';
 
 interface IAuthComponentProps {
@@ -17,7 +17,8 @@ interface IAuthComponentProps {
 
 export const AuthComponent: React.FunctionComponent<IAuthComponentProps> = ({isAuth, username, userId}) => {
   const labtests = new Auth()
-    labtests.isLogged()
+    
+    isLogged()
   
 
     isAuth = useSelector((state: any)=> state.auth.login.isAuth);

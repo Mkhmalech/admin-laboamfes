@@ -2,12 +2,15 @@ import { call, put } from "redux-saga/effects";
 
 export const api = 'http://localhost:8080/api';
 
+export const accountName = 'FES'
+
 export async function callApi(method: string, url: string, path: string, data?: any) {
     const res = await fetch(`${url}/${path}`, {
       method,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization' : `Beer ${localStorage.getItem('TTUID')}`
+        'Authorization' : `Beer ${localStorage.getItem('TTUID')}`,
+        'Account' : `App ${accountName}`
       },
       body: JSON.stringify(data)
     })
