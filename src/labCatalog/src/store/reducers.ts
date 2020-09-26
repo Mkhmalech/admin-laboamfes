@@ -22,6 +22,30 @@ export const catalogListReducer: Reducer = (
       };
 
     /*******************************************************
+     ********** Catalog fetching functions *****************
+     *******************************************************/
+    // fetch all catalogs
+    case CatalogActions.CATALOG_FETCH_ALL_SUCCESS:
+      return { ...state, catalogs : action.payload.catalog.fetchCatalogs}
+
+    // fetch catalog details
+    case CatalogActions.CATALOG_FETCH_DETAILS_SUCCESS:
+      return { ...state, catalog : action.payload.catalog.fetchCatalog}
+
+    // update bfactor
+    case CatalogActions.CATALOG_UPDATE_BFACTOR_SUCCESS:
+      return { ...state, catalogbfactor : action.payload.catalog.updateCatalog}
+    // fetch modified tests
+    case CatalogActions.CATALOG_FETCH_MODIFIED_TESTS_SUCCESS:
+      return{...state, modifiedTests : action.payload.catalog.catalogFetchModiedTest}
+    // update test price
+    case CatalogActions.CATALOG_UPDATE_PRICE_SUCCESS:
+      return{...state, updatePrice : action.payload.catalog.catalogModiyTestPrice}
+    // update test referring
+    // update test reported time
+    // loading while updating
+    
+    /*******************************************************
      ********** Modal Add New Catalog Test *****************
      *******************************************************/
 
@@ -42,7 +66,10 @@ export const catalogListReducer: Reducer = (
     case CatalogActions.CATALOG_LIST_TESTS_NEW_TEST_FETCH_TESTS_SUCCESS:
       return {
         ...state,
-        catalogList: [...action.CatalogList],
+        catalogList: action.CatalogList.map((o:any)=>{
+          o.isLoading = false;
+          return o
+        }),
         catalogModalFetchTests : false
       };
 

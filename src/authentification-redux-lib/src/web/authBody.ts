@@ -25,7 +25,6 @@ export const animationFadeSlide = keyframes`
 export const AuthContent = styled.div`
     flex-wrap: nowrap;
     flex-grow: 1;
-    margin-top: 44px;
     animation: ${animationFadeSlide} .4s ease-out both .5s;
     flex-direction: column;
     display: flex;

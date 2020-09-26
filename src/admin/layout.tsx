@@ -4,7 +4,8 @@ import {DockMenu} from './dockMenu'
 import * as Wrapper from '../common/adminWrappers'
 import { useSelector } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
-
+import { Ico } from '../react-icons-sc/src/ico';
+import { profile } from './icons/profile';
 // staff routes
 import {staffRoutes} from '../ittyni-staff/index'
 import { settingRoutes } from '../ittyni-labsetting/src/settingRoutes';
@@ -12,6 +13,7 @@ import { settingRoutes } from '../ittyni-labsetting/src/settingRoutes';
 // catalog
 import {Catalog} from '../labCatalog/src'
 import {CatalogDetails} from '../labCatalog/src'
+import { appointments } from '../lab-appointment/routes';
 
 export const AdminLayout = () => {
 
@@ -27,7 +29,8 @@ export const AdminLayout = () => {
     return (isAuth &&
         <Wrapper.admin>
             <Wrapper.header>
-                Laboratoire d'analyse medicale <span style={{ color: 'red' }}>Fes</span>
+                <div>Laboratoire d'analyse medicale <span style={{ color: 'red' }}>Fes</span></div>
+                <div style={{float : 'right', margin: '0 25px'}}><Ico {...profile} width={25} height={25} color="rgb(0, 0, 0)"/></div>
             </Wrapper.header>
 
             <Wrapper.container>
@@ -86,6 +89,10 @@ export const AdminLayout = () => {
                             <Route path={settingRoutes.admin.laboSettingAutomate.path} component={settingRoutes.admin.laboSettingAutomate.component}/>
                             <Route path={settingRoutes.admin.laboSettingTeam.path} component={settingRoutes.admin.laboSettingTeam.component}/>
                             <Route path={settingRoutes.admin.laboSetting.path} component={settingRoutes.admin.laboSetting.component} exact/>
+                            {/**
+                             * appointments 
+                             **/}
+                            <Route path={appointments.listAll.link} component={appointments.listAll.component} />
                         </Wrapper.page>
                     </Wrapper.content>
                 </Wrapper.main>

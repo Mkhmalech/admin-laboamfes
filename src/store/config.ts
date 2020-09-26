@@ -1,6 +1,6 @@
 import { call, put } from "redux-saga/effects";
 
-export const api = 'http://localhost:8080/api';
+export const api = 'https://api.laboamfes.ma';
 
 export const accountName = 'FES'
 

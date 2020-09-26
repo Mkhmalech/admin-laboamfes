@@ -1,5 +1,62 @@
+import { store } from '../../../index';
 import { Dispatch } from "redux";
 import { CatalogActions } from "../store/actions";
+
+// fetch all existing catalogs
+export const catalogsFetch = () => store.dispatch({
+  type : CatalogActions.CATALOG_FETCH_ALL,
+  path : 'labos', 
+  payload : {
+    query:`query{catalog{fetchCatalogs{_id title description bFactor}}}`
+  }
+})
+
+// fetch catalog details
+export const catalogDetailsFetch = (id : string) => store.dispatch({
+  type : CatalogActions.CATALOG_FETCH_DETAILS,
+  path : 'labos', 
+  payload : {
+    query:`query{catalog{fetchCatalog(id:"${id}"){title description bFactor}}}`
+  }
+})
+
+// update catalog
+export const catalogUpdateBFactor = (id : string, bfactor : number) => store.dispatch({
+  type : CatalogActions.CATALOG_UPDATE_BFACTOR,
+  path : 'labos', 
+  payload : {
+    query:`query{catalog{updateCatalog(catalog:{_id : "${id}" bFactor : ${bfactor}})}}`
+  }
+})
+
+// update price
+export const updateCatalogListPrice = (catalogId : string, test:any)=>store.dispatch({
+  type :CatalogActions.CATALOG_UPDATE_PRICE,
+  payload:{
+    query:`query{catalog{catalogModiyTestPrice(catalogId:"${catalogId}",testId:"${test.id}",price:${test.price})}}`
+  },
+  path: 'labos'
+})
+// update reported
+export const updateCatalogListReported = ()=>store.dispatch({
+  type :"dhgfhgfdgf"
+})
+// update referred
+export const updateCatalogListReferred = (catalogId: string, test:any)=>store.dispatch({
+  type :CatalogActions.CATALOG_UPDATE_REFERRED,
+  path:'labos',
+  payload:{
+    query:`query{catalog{catalogModiyTestReferred(catalogId:"${catalogId}",testId:"${test.id}",referred: ${test.referred})}}`
+  }
+})
+// update price
+export const catalogFetchModiedTest = ()=>store.dispatch({
+  type :CatalogActions.CATALOG_FETCH_MODIFIED_TESTS,
+  payload:{
+    query:`query{catalog{catalogFetchModiedTest(catalogId:"5f67a5b24225ff1008ac8dfa"){testId testPrice testReferred testReported}}}`
+  },
+  path:'labos'
+})
 
 export class CatalogClass {
   private dispatch: Dispatch;

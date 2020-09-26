@@ -37,6 +37,8 @@ export const admin = styled('div').attrs({})`
  * header wrap
  */
 export const header = styled('header').attrs({})`
+    justify-content: space-between;
+    display : flex;
     border: 2px solid ${headeeSideBr};
     position: fixed;
     top: 0;

@@ -1,4 +1,16 @@
+import { keyframes } from "styled-components";
 import styled from "../../theme/styled-components";
+
+
+const Gradient = keyframes`
+  0% {
+      background-position: 200%;
+  }
+
+  100% {
+      background-position: 0%;
+  }
+`
 
 export const Container = styled.div`
   margin-right: 10px;
@@ -49,15 +61,43 @@ export const TBody = styled.tbody`
   -ms-overflow-style: none;
   &::-webkit-scrollbar{display : none}
 `;
-export const ContentRow = styled.tr`
+export const ContentRow = styled('tr')<{loading? : boolean}>`
   display: flex;
   flex: 1;
   flex-direction: row;
   flex-wrap: nowrap;
   border-bottom: 1px solid #000000;
-
-  :nth-of-type(even) td {
-    background: #e6c9c9;
+  ${({loading})=>
+    !loading ? "background : #ffffff"
+    :
+    `
+      background: linear-gradient(39deg, 
+        #ffffff 27%, 
+        #e6c9c9 48%, 
+        #ffffff 71%
+      );
+      background-size : 200%;
+      *{visibility : hidden;}
+    `
+  }
+  animation: ${Gradient} 1s ease-out infinite;
+  
+  :nth-of-type(even) {
+    ${({loading})=>
+      !loading ? "background : #e6c9c9"
+      :
+      `
+        background: linear-gradient(39deg, 
+          #e6c9c9 27%, 
+          #ffffff 48%, 
+          #e6c9c9 71%
+        );
+        background-size : 200%;
+        *{visibility : hidden;}
+      `
+    }
+    
+    animation: ${Gradient} 1s ease-out infinite;
   }
 
   td {
@@ -70,3 +110,4 @@ export const ContentRow = styled.tr`
     }
   }
 `;
+

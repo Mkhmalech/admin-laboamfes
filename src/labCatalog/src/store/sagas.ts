@@ -2,6 +2,52 @@ import { all, call, fork, put, takeEvery } from 'redux-saga/effects'
 import { CatalogActions } from './actions';
 import * as config from '../../../store/config';
 
+// fetch all catalogs
+function* catalogFetchAll({path, payload} : any){
+    yield config.tryFetching(
+        path,
+        payload,
+        CatalogActions.CATALOG_FETCH_ALL_ERROR,
+        CatalogActions.CATALOG_FETCH_ALL_SUCCESS
+    )
+}
+// fetch catalog details
+function* catalogFetchDetails({path, payload} : any){
+    yield config.tryFetching(
+        path,
+        payload,
+        CatalogActions.CATALOG_FETCH_DETAILS_ERROR,
+        CatalogActions.CATALOG_FETCH_DETAILS_SUCCESS
+    )
+}
+//  update bfactor
+function* catalogUpdateBFactor({path, payload} : any){
+    yield config.tryFetching(
+        path,
+        payload,
+        CatalogActions.CATALOG_UPDATE_BFACTOR_ERROR,
+        CatalogActions.CATALOG_UPDATE_BFACTOR_SUCCESS
+    )
+}
+//  update price
+function* catalogUpdatePrice({path, payload} : any){
+    yield config.tryFetching(
+        path,
+        payload,
+        CatalogActions.CATALOG_UPDATE_PRICE_ERROR,
+        CatalogActions.CATALOG_UPDATE_PRICE_SUCCESS
+    )
+}
+//  fetch modified tests
+function* catalogModifiedTests({path, payload} : any){
+    yield config.tryFetching(
+        path,
+        payload,
+        CatalogActions.CATALOG_FETCH_MODIFIED_TESTS_ERROR,
+        CatalogActions.CATALOG_FETCH_MODIFIED_TESTS_SUCCESS
+    )
+}
+
 
 
 
@@ -33,7 +79,6 @@ function* LabCatalogListFetch({path, payload} : any){
         throw new Error(e); 
     }
 }
-
 
 /**
  * Lab
@@ -69,7 +114,6 @@ function* LabCatalogListFilterTestName({path, payload} : any){
         throw new Error(e);
     }
 }
-
 
 function* LabCatalogUpdateTests({path, payload} : any){
 
@@ -249,6 +293,17 @@ function* addUpdateTest({path, payload} : any){
 
 //watcher func dispatcher
 function* watchFetchCatalogTests(){
+
+    // TODO try to fetch test from lab catolog 
+    yield takeEvery(CatalogActions.CATALOG_FETCH_ALL, catalogFetchAll)
+    // TODO try to fetch test from lab catolog 
+    yield takeEvery(CatalogActions.CATALOG_FETCH_DETAILS, catalogFetchDetails)
+    // catalog update bfactor
+    yield takeEvery(CatalogActions.CATALOG_UPDATE_BFACTOR, catalogUpdateBFactor)
+    // catalog update bfactor
+    yield takeEvery(CatalogActions.CATALOG_UPDATE_PRICE, catalogUpdatePrice)
+    // fetch modified tests
+    yield takeEvery(CatalogActions.CATALOG_FETCH_MODIFIED_TESTS, catalogModifiedTests)
 
     // TODO try to fetch test from lab catolog 
     yield takeEvery(CatalogActions.CATALOG_LIST_ALL_TESTS_FROM_API, LabCatalogListFetch)

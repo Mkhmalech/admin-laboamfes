@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Ico } from '../react-icons-sc/src/ico';
-import { profile } from './icons/profile';
 import { staff } from './icons/staff';
 import { catalog } from './icons/catalog';
 import { laboratory } from './icons/laboratory';
 import { settings } from './icons/settings';
 import { useSelector } from 'react-redux';
+
+// appointment module
+import {appointments} from '../lab-appointment/routes'
 
 interface IDockProps {
   username: string
@@ -22,11 +24,12 @@ const Dock: React.FunctionComponent<IDockProps> = ({ username, closeOpenSide }) 
   // const {accounts, accounts : {role, permissions}} = user;
 
   const docksData = [
-    {pageLink : `/admin/${username}/account`, icon : profile, isUser : 'all'},
+    // {pageLink : `/admin/${username}/account`, icon : profile, isUser : 'all'},
     {pageLink : `/admin/${username}/labo`, icon : laboratory, isUser : 'admin'},
     {component : 'Personelles', pageLink : `/admin/${username}/staff`, icon : staff, isUser : 'admin'},
     {component : 'catalogue', pageLink : `/admin/${username}/catalog`, icon : catalog, isUser : 'all'},
     {component : 'Parametres', pageLink : `/admin/${username}/settings`, icon : settings, isUser : 'admin'},
+    {component : 'Appointments', pageLink : `/admin/${username}/appointments`, icon : appointments.dock.icon, isUser : 'admin'},
   ]
   React.useEffect(()=>{
     if(!user){
