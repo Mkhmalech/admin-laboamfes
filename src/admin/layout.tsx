@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 import { Ico } from '../react-icons-sc/src/ico';
 import { profile } from './icons/profile';
+// nav menu
+import {NavMenu} from './navMenu'
 // staff routes
 import {staffRoutes} from '../ittyni-staff/index'
 import { settingRoutes } from '../ittyni-labsetting/src/settingRoutes';
@@ -30,7 +32,7 @@ export const AdminLayout = () => {
         <Wrapper.admin>
             <Wrapper.header>
                 <div>Laboratoire d'analyse medicale <span style={{ color: 'red' }}>Fes</span></div>
-                <div style={{float : 'right', margin: '0 25px'}}><Ico {...profile} width={25} height={25} color="rgb(0, 0, 0)"/></div>
+                <NavMenu username={username}/>
             </Wrapper.header>
 
             <Wrapper.container>
